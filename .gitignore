@@ -27,3 +27,6 @@ Changelog.md
 
 # Editor configs
 .vscode
+
+# Distribution from build
+dist/
