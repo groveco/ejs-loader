@@ -1,5 +1,5 @@
-var _ = require('lodash');
-var loaderUtils = require('loader-utils');
+import _ from 'lodash';
+import loaderUtils from'loader-utils';
 
 function getOptions(context) {
   if (context.options && context.options.ejsLoader) {
@@ -8,7 +8,7 @@ function getOptions(context) {
   return {};
 }
 
-module.exports = function(source) {
+export default function (source){
   this.cacheable && this.cacheable();
   var query = loaderUtils.parseQuery(this.query);
   var options = getOptions(this);
@@ -21,5 +21,5 @@ module.exports = function(source) {
   });
 
   var template = _.template(source, _.extend({}, query, options));
-  return 'export default ' + template;
+  return `export default ${template}`
 };
