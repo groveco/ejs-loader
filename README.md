@@ -1,27 +1,27 @@
-# ejs-loader for webpack
+# ejs-loader for webpack with ECMAScript Modules
 
-[![npm](https://img.shields.io/npm/v/ejs-loader.svg)](https://www.npmjs.com/package/ejs-loader)
-[![Build Status](https://travis-ci.com/difelice/ejs-loader.svg)](https://travis-ci.com/difelice/ejs-loader)
+[![npm](https://img.shields.io/npm/v/@groveco/ejs-loader.svg)](https://www.npmjs.com/package/@groveco/ejs-loader)
 
-EJS (Underscore/LoDash Templates) loader for [webpack](http://webpack.github.io/). Uses [lodash template](http://lodash.com/docs#template) function to compile templates.
+EJS (Underscore/LoDash Templates) loader for [webpack](http://webpack.github.io/) compiled as an ECMAScript module. Uses [lodash template](http://lodash.com/docs#template) function to compile templates.
 
 If you are looking for the loader which uses [EJS templating engine](https://github.com/tj/ejs), there is [ejs-compiled-loader](https://github.com/bazilio91/ejs-compiled-loader)
 
 ## Installation
 
-`npm install ejs-loader`
+`npm install @groveco/ejs-loader`
 
 ## Usage
 
 [Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)
 
 ``` javascript
-var template = require("ejs!./file.ejs");
+import template from '@groveco/ejs-loader?variable=data!./file.ejs';
 // => returns the template function compiled with undesrcore (lodash) templating engine.
 
 // And then use it somewhere in your code
 template(data) // Pass object with data
 ```
+The variable option is `required` to compile EJS templates into ES compatible modules. If the `variable` option is not provided as a loader or `query` [option](https://webpack.js.org/concepts/loaders/#loader-features), an `UnsupportedConfiguration` Exception will be thrown throw. Please see https://github.com/lodash/lodash/issues/3709#issuecomment-375898111 for additional details 
 
 You also should provide a global `_` variable with the lodash/underscore runtime. You can do it with the following webpack plugin: https://github.com/webpack/docs/wiki/list-of-plugins#provideplugin
 
@@ -41,7 +41,7 @@ Config example using a querystring:
 module.exports = {
   module: {
     loaders: [
-      { test: /\.ejs$/, loader: 'ejs-loader?variable=data' },
+      { test: /\.ejs$/, loader: '@groveco/ejs-loader?variable=data' },
     ]
   }
 };
@@ -57,7 +57,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.ejs$/,
-                loader: 'ejs-loader',
+                loader: '@groveco/ejs-loader',
                 query: {
                     variable: 'data',
                     interpolate : '\\{\\{(.+?)\\}\\}',
@@ -78,7 +78,7 @@ Config example using the ```ejsLoader``` config block:
 module.exports = {
   module: {
     loaders: [
-      { test: /\.ejs$/, loader: 'ejs-loader' }
+      { test: /\.ejs$/, loader: '@groveco/ejs-loader' }
     ]
   },
   ejsLoader : {
@@ -113,7 +113,14 @@ As a result, `renderedHtml` becomes a string `<h1><a href="http://example.com">E
 
 
 ## Release History
-* 1.0.0 - Changed export format to ESM
+* 0.0.0-beta.1 - Inital fork of [ejs-loader](https://github.com/difelice/ejs-loader) with support for ECMA Modules and deprecating CommonsJS
+
+## License
+
+MIT (http://www.opensource.org/licenses/mit-license.php)
+
+## Release History
+* 1.0.0-beta.1 - Inital fork of [ejs-loader](https://github.com/difelice/ejs-loader) with support for ECMA Modules and deprecating CommonsJS
 * 0.3.5 - Fix dependency vulnerabilities.
 * 0.3.3 - Fix dependency vulnerabilities.
 * 0.3.0 - Allow passing template options via `ejsLoader` or via loader's `query`
