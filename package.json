@@ -30,6 +30,9 @@
     "url": "https://github.com/groveco/ejs-loader/issues"
   },
   "homepage": "https://github.com/groveco/ejs-loader",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "loader-utils": "^0.2.7",
     "lodash": "^4.17.15"
