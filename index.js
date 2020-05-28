@@ -1,25 +1,21 @@
-import _ from 'lodash';
-import loaderUtils from'loader-utils';
+import _ from 'lodash'
+import loaderUtils from 'loader-utils'
 
-class UnsupportedConfiguration extends Error {
-  constructor(message){
-    super(message)
-  }
-}
+class UnsupportedConfiguration extends Error {}
 
-function getOptions(context) {
+function getOptions (context) {
   if (context.options && context.options.ejsLoader) {
-    return context.options.ejsLoader;
+    return context.options.ejsLoader
   }
-  return {};
+  return {}
 }
 
-export default function (source){
-  this.cacheable && this.cacheable();
-  var query = loaderUtils.parseQuery(this.query);
-  var options = getOptions(this);
+export default function (source) {
+  this.cacheable && this.cacheable()
+  var query = loaderUtils.parseQuery(this.query)
+  var options = getOptions(this)
 
-  if(!options.variable && !query.variable){
+  if (!options.variable && !query.variable) {
     throw new UnsupportedConfiguration(`
       To support ES Modules, the 'variable' option must be passed to avoid 'with' statements 
       in the compiled template to be strict mode compatible. 
@@ -27,13 +23,13 @@ export default function (source){
     `)
   }
 
-  ['escape', 'interpolate', 'evaluate'].forEach(function(templateSetting) {
-    var setting = query[templateSetting];
+  ['escape', 'interpolate', 'evaluate'].forEach(function (templateSetting) {
+    var setting = query[templateSetting]
     if (_.isString(setting)) {
-      query[templateSetting] = new RegExp(setting, 'g');
+      query[templateSetting] = new RegExp(setting, 'g')
     }
-  });
+  })
 
-  var template = _.template(source, _.extend({}, query, options));
+  var template = _.template(source, _.extend({}, query, options))
   return `export default ${template}`
 };
