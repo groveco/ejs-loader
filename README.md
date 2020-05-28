@@ -10,6 +10,7 @@ If you are looking for the loader which uses [EJS templating engine](https://git
 
 `npm install @groveco/ejs-loader`
 
+
 ## Usage
 
 [Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)
@@ -110,15 +111,6 @@ Lodash template function does not provide `include` method of [ejs module](http:
 
 As a result, `renderedHtml` becomes a string `<h1><a href="http://example.com">Example</a></h1>`.
 
-
-
-## Release History
-* 0.0.0-beta.1 - Inital fork of [ejs-loader](https://github.com/difelice/ejs-loader) with support for ECMA Modules and deprecating CommonsJS
-
-## License
-
-MIT (http://www.opensource.org/licenses/mit-license.php)
-
 ## Release History
 * 1.0.0-beta.1 - Inital fork of [ejs-loader](https://github.com/difelice/ejs-loader) with support for ECMA Modules and deprecating CommonsJS
 * 0.3.5 - Fix dependency vulnerabilities.
@@ -126,6 +118,11 @@ MIT (http://www.opensource.org/licenses/mit-license.php)
 * 0.3.0 - Allow passing template options via `ejsLoader` or via loader's `query`
 * 0.2.1 - Add ability to pass compiller options
 * 0.1.0 - Initial release
+
+## Contributing Prerequisites
+
+* Node >= 12.13.0
+* npm >= 6.12.0
 
 ## License
 
