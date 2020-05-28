@@ -33,6 +33,15 @@ jobs:
           keys:
             - v1-npm-dependencies-{{ checksum "package-lock.json" }}
       - run: npm run test
+  lint:
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-npm-dependencies-{{ checksum "package-lock.json" }}
+      - run: npm run lint
 workflows:
   build_and_test:
     jobs:
@@ -41,5 +50,8 @@ workflows:
           requires:
            - node-dependencies
       - test:
+          requires:
+           - node-dependencies
+      - lint:
           requires:
            - node-dependencies
