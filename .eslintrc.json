@@ -15,6 +15,5 @@
         "ecmaVersion": 11,
         "sourceType": "module"
     },
-    "rules": {
-    }
+    "ignorePatterns": ["dist/*"]
 }
