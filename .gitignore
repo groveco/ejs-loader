@@ -30,3 +30,6 @@ Changelog.md
 
 # Distribution from build
 dist/
+
+# Node Version
+.node-version

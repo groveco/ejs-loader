@@ -36,13 +36,20 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "babel index.js --out-dir dist"
+    "build": "babel index.js --out-dir dist",
+    "lint": "eslint index.js __tests__/*.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.0",
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "babel-jest": "^26.0.1",
+    "eslint": "^7.1.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
     "jest": "^25.2.3"
   }
 }
